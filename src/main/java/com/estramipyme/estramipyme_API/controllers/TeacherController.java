@@ -3,8 +3,6 @@ package com.estramipyme.estramipyme_API.controllers;
 import com.estramipyme.estramipyme_API.models.Teacher;
 import com.estramipyme.estramipyme_API.services.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,13 +21,8 @@ public class TeacherController {
     }
     //consul Id
     @GetMapping ("{id}")
-    public ResponseEntity<Teacher> getId(@PathVariable Long id) {
-        Teacher teacher= teacherService.getTeacherId(id);
-
-        if (teacher == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(teacher, HttpStatus.OK);
+    public Teacher getId(@PathVariable Long id) {
+        return teacherService.getTeacherId(id);
     }
     //crear teacher
     @PostMapping
@@ -39,7 +32,7 @@ public class TeacherController {
     //Actualizar
     @PutMapping ("/{id}")
     public Teacher updateTeacher (@RequestBody Teacher teacher, @PathVariable Long id){
-        teacher.setId(id);
+        teacher.setIdTeacher(id);
         return teacherService.updateTeacher(teacher);
     }
     //delete
