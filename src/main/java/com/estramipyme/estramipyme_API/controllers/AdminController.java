@@ -3,6 +3,7 @@ package com.estramipyme.estramipyme_API.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,34 +28,75 @@ public class AdminController {
     }
 
     @GetMapping
-    public List<Admin> findAll() {
-        return adminService.findAll();
+    public ResponseEntity<?> getAllAdmins() {
+        try {
+            List<Admin> admins = adminService.findAll();
+            return ResponseEntity.ok(admins);
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                 .body("Ocurrió un error inesperado al obtener los administradores");
+        }
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Admin> findById(@PathVariable Long id) {
-        Admin admin = adminService.findById(id);
-        return admin != null ? ResponseEntity.ok(admin) : ResponseEntity.notFound().build();
+     @GetMapping("/{id}")
+    public ResponseEntity<?> getAdminById(@PathVariable Long id) {
+        try {
+            Admin admin = adminService.findById(id);
+            if (admin == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                                     .body("Administrador no encontrado con ID: " + id);
+            }
+            return ResponseEntity.ok(admin);
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                 .body("Ocurrió un error inesperado");
+        }
     }
 
     @PostMapping
-    public Admin save(@RequestBody Admin admin) {
-        return adminService.save(admin);
+    public ResponseEntity<Admin> createAdmin(@RequestBody Admin admin) {
+        try {
+            Admin savedAdmin = adminService.save(admin);
+            return ResponseEntity.status(HttpStatus.CREATED).body(savedAdmin);
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                 .body(null);
+        }
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Admin> update(@PathVariable Long id, @RequestBody Admin admin) {
+public ResponseEntity<?> updateAdmin(@PathVariable Long id, @RequestBody Admin admin) {
+    try {
         Admin existing = adminService.findById(id);
         if (existing != null) {
             admin.setId(id);
-            return ResponseEntity.ok(adminService.save(admin));
+            Admin updatedAdmin = adminService.save(admin);
+            return ResponseEntity.ok(updatedAdmin);
         }
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                             .body("Administrador con ID " + id + " no encontrado.");
+    } catch (Exception ex) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                             .body("Ocurrió un error inesperado al intentar actualizar el administrador.");
     }
+}
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        adminService.deleteById(id);
-        return ResponseEntity.noContent().build();
+
+
+@DeleteMapping("/{id}")
+public ResponseEntity<?> deleteAdmin(@PathVariable Long id) {
+    try {
+        Admin existing = adminService.findById(id);
+        if (existing != null) {
+            adminService.deleteById(id);
+            return ResponseEntity.ok("Administrador con ID " + id + " eliminado correctamente.");
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                             .body("Administrador con ID " + id + " no encontrado.");
+    } catch (Exception ex) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                             .body("Ocurrió un error inesperado al intentar eliminar el administrador.");
     }
+}
+
 }
