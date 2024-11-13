@@ -20,8 +20,6 @@ public class Sector {
     @Column(name = "descripcion_sector", nullable = false)
     private String descripcionSector;
 
-    @OneToMany(mappedBy = "sector")
-    private Set<Empresas> empresas;
 
     // Getters y Setters
 
@@ -41,11 +39,5 @@ public class Sector {
         this.descripcionSector = descripcionSector;
     }
 
-    public Set<Empresas> getEmpresas() {
-        return empresas;
-    }
-
-    public void setEmpresas(Set<Empresas> empresas) {
-        this.empresas = empresas;
-    }
+    
 }

@@ -23,20 +23,26 @@ public class EmpresasService {
     }
 
     public Empresas saveEmpresa(Empresas empresa) {
+        if (empresa.getSector() == null || empresa.getSector().getId() == null) {
+            throw new RuntimeException("El sector no es válido.");
+        }
         return empresasRepository.save(empresa);
     }
 
     public Empresas updateEmpresa(Long id, Empresas empresaDetails) {
         Empresas empresa = empresasRepository.findById(id).orElse(null);
         if (empresa != null) {
+            if (empresaDetails.getSector() != null) {
+                empresa.setSector(empresaDetails.getSector());
+            }
             empresa.setNombreEmpresa(empresaDetails.getNombreEmpresa());
             empresa.setSizeCompany(empresaDetails.getSizeCompany());
             empresa.setTestId(empresaDetails.getTestId());
-            empresa.setSector(empresaDetails.getSector());
             return empresasRepository.save(empresa);
         }
         return null;
     }
+    
 
     public void deleteEmpresa(Long id) {
         empresasRepository.deleteById(id);
