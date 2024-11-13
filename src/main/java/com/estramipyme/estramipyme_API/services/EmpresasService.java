@@ -2,6 +2,8 @@ package com.estramipyme.estramipyme_API.services;
 
 import java.util.List;
 
+import com.estramipyme.estramipyme_API.Repositories.TestRepository;
+import com.estramipyme.estramipyme_API.models.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,8 @@ public class EmpresasService {
 
     @Autowired
     private EmpresasRepository empresasRepository;
+    @Autowired
+    private TestRepository testRepository;
 
     public List<Empresas> getAllEmpresas() {
         return empresasRepository.findAll();
@@ -26,6 +30,8 @@ public class EmpresasService {
         if (empresa.getSector() == null || empresa.getSector().getId() == null) {
             throw new RuntimeException("El sector no es válido.");
         }
+        if (empresa.getTest() != null) {
+            Test test = testRepository.findById(empresa.getTest().getIdTest()).orElse(null); if (test == null) { throw new RuntimeException("El test no es válido."); } empresa.setTest(test); }
         return empresasRepository.save(empresa);
     }
 
@@ -37,7 +43,7 @@ public class EmpresasService {
             }
             empresa.setNombreEmpresa(empresaDetails.getNombreEmpresa());
             empresa.setSizeCompany(empresaDetails.getSizeCompany());
-            empresa.setTestId(empresaDetails.getTestId());
+            empresa.setTest(empresaDetails.getTest());
             return empresasRepository.save(empresa);
         }
         return null;
