@@ -8,9 +8,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "empresas")
+@NoArgsConstructor
 public class Empresas {
 
     @Id
@@ -23,12 +25,15 @@ public class Empresas {
     @Column(name = "size_company")
     private int sizeCompany;
 
-    @Column(name = "test_id")
-    private Long testId;
+    @ManyToOne
+    @JoinColumn(name = "test_id")
+    private Test test;
 
-   
+    @ManyToOne
    @JoinColumn(name = "sector_id")
-    private int sector;
+    private Sector sector;
+
+    //constructor si argumentos
 
     // Getters y Setters
 
@@ -56,19 +61,19 @@ public class Empresas {
         this.sizeCompany = sizeCompany;
     }
 
-    public Long getTestId() {
-        return testId;
+    public Test getTestId() {
+        return test;
     }
 
-    public void setTestId(Long testId) {
-        this.testId = testId;
+    public void setTestId(Test testId) {
+        this.test = testId;
     }
 
-    public int getSector() {
-   return sector;
+    public Sector getSector() {
+        return sector;
     }
 
-   public void setSector(int sector) {
+   public void setSector(Sector sector) {
    this.sector = sector;
    }
 }
