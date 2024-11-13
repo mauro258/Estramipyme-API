@@ -21,11 +21,11 @@ public class Teacher {
     private String telephone;
     private String password;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     @JoinColumn(name = "empresa_id")
     private Empresas empresa;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     @JoinColumn(name = "type_user_id")
     private TypeUser type_user;
 

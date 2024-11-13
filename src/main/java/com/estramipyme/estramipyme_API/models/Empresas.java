@@ -61,12 +61,12 @@ public class Empresas {
         this.sizeCompany = sizeCompany;
     }
 
-    public Test getTestId() {
+    public Test getTest() {
         return test;
     }
 
-    public void setTestId(Test testId) {
-        this.test = testId;
+    public void setTest(Test test) {
+        this.test = test;
     }
 
     public Sector getSector() {

@@ -23,12 +23,12 @@ public class TeacherController {
     }
 
     // consul Id
-    @GetMapping("{id}")
+    @GetMapping("id/{id}")
     public Teacher getId(@PathVariable Long id) {
         return teacherService.getTeacherId(id);
     }
 
-    @GetMapping("/{email}")
+    @GetMapping("email/{email}")
     public ResponseEntity<List<Teacher>> getTeacherByEmail(@RequestParam String email) {
         List<Teacher> teachers = teacherService.findByEmail(email);
         return ResponseEntity.ok(teachers);
