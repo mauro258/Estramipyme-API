@@ -9,7 +9,7 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Data
-@Entity 
+@Entity
 @Table(name = "type_user")
 public class TypeUser {
 
@@ -17,10 +17,8 @@ public class TypeUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, 
- unique = true)
+    @Column(nullable = false, unique = true)
     private String descripcion;
-
 
     // Getters and setters
 }

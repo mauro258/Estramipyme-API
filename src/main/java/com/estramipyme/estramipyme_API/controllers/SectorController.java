@@ -1,4 +1,4 @@
- package com.estramipyme.estramipyme_API.controllers;
+package com.estramipyme.estramipyme_API.controllers;
 
 import com.estramipyme.estramipyme_API.models.Sector;
 import com.estramipyme.estramipyme_API.services.SectorService;
@@ -38,4 +38,4 @@ public class SectorController {
     public void deleteSector(@PathVariable Long id) {
         sectorService.deleteSector(id);
     }
-} 
+}

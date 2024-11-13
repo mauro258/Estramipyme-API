@@ -6,6 +6,6 @@ import com.estramipyme.estramipyme_API.models.Empresas;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface  EmpresasRepository extends JpaRepository<Empresas, Long>{
-    
+public interface EmpresasRepository extends JpaRepository<Empresas, Long> {
+
 }

@@ -9,8 +9,6 @@ import com.estramipyme.estramipyme_API.models.TypeUser;
 
 @Service
 public class TypeUserService {
-    
-
 
     @Autowired
     private TypeUserRepository typeUserRepository;

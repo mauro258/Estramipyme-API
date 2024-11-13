@@ -21,19 +21,22 @@ public class TeacherService {
     @Autowired
     TypeUserRepository typeUserRepository;
 
-    //consulta varios
-    public List<Teacher> getTeachers(){
+    // consulta varios
+    public List<Teacher> getTeachers() {
         return teacherRepo.findAll();
     }
-    //consulta por Id
-    public  Teacher getTeacherId(Long id){
+
+    // consulta por Id
+    public Teacher getTeacherId(Long id) {
         return teacherRepo.findById(id).orElse(null);
     }
-    public  List<Teacher> findByEmail(String email){
+
+    public List<Teacher> findByEmail(String email) {
         return teacherRepo.findByEmail(email);
     }
-    //crea profesores
-    public  Teacher addTeacher(Teacher teacher){
+
+    // crea profesores
+    public Teacher addTeacher(Teacher teacher) {
         Empresas empresa = empresasRepository.findById(teacher.getEmpresa().getId()).orElse(null);
         TypeUser typeUser = typeUserRepository.findById(teacher.getType_user().getId()).orElse(null);
 
@@ -42,14 +45,15 @@ public class TeacherService {
 
         return teacherRepo.save(teacher);
     }
-    //Edita profesores
-    public  Teacher updateTeacher(Teacher teacher){
-        return  teacherRepo.save(teacher);
-    }
-    //Elimina profe
-    public  void deleteTeacherId (Long id){
-        teacherRepo.deleteById(id);
+
+    // Edita profesores
+    public Teacher updateTeacher(Teacher teacher) {
+        return teacherRepo.save(teacher);
     }
 
+    // Elimina profe
+    public void deleteTeacherId(Long id) {
+        teacherRepo.deleteById(id);
+    }
 
 }

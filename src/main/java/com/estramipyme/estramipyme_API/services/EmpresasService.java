@@ -2,7 +2,6 @@ package com.estramipyme.estramipyme_API.services;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +32,7 @@ public class EmpresasService {
             empresa.setNombreEmpresa(empresaDetails.getNombreEmpresa());
             empresa.setSizeCompany(empresaDetails.getSizeCompany());
             empresa.setTestId(empresaDetails.getTestId());
-            empresa.setSector(empresaDetails.getSector()); 
+            empresa.setSector(empresaDetails.getSector());
             return empresasRepository.save(empresa);
         }
         return null;

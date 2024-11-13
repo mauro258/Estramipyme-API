@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="teachers")
+@Table(name = "teachers")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,11 +14,11 @@ import lombok.NoArgsConstructor;
 public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long idTeacher;
-    private  String name;
-    private  String surname;
+    private Long idTeacher;
+    private String name;
+    private String surname;
     private String email;
-    private  String telephone;
+    private String telephone;
     private String password;
 
     @ManyToOne(optional = false)
@@ -28,6 +28,5 @@ public class Teacher {
     @ManyToOne(optional = false)
     @JoinColumn(name = "type_user_id")
     private TypeUser type_user;
-
 
 }

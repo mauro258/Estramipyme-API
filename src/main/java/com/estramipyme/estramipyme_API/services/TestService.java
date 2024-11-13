@@ -13,24 +13,28 @@ public class TestService {
     @Autowired
     private TestRepository testRepository;
 
-    //consulta todos
-    public List<Test> getTests(){
-        return  testRepository.findAll();
+    // consulta todos
+    public List<Test> getTests() {
+        return testRepository.findAll();
     }
-    //consulta por Id
-    public Optional<Test> getTestXId(Long id){
-        return  testRepository.findById(id);
+
+    // consulta por Id
+    public Optional<Test> getTestXId(Long id) {
+        return testRepository.findById(id);
     }
-    //crear
-    public Test addTest(Test test){
+
+    // crear
+    public Test addTest(Test test) {
         return testRepository.save(test);
     }
-    //Actualizar
-    public Test updateTest(Test test){
+
+    // Actualizar
+    public Test updateTest(Test test) {
         return testRepository.save(test);
     }
-    //Eliminar
-    public void  deleteTest(Long id){
+
+    // Eliminar
+    public void deleteTest(Long id) {
         testRepository.deleteById(id);
     }
 }

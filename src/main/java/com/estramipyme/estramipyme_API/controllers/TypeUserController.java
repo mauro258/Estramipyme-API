@@ -17,8 +17,6 @@ import com.estramipyme.estramipyme_API.services.TypeUserService;
 @RestController
 @RequestMapping("/api/typeusers")
 public class TypeUserController {
-    
-
 
     @Autowired
     private TypeUserService typeUserService;
@@ -42,7 +40,8 @@ public class TypeUserController {
     @PutMapping("/{id}")
     public ResponseEntity<TypeUser> updateTypeUser(@PathVariable Long id, @RequestBody TypeUser updatedTypeUser) {
         TypeUser updatedTypeUserResponse = typeUserService.updateTypeUser(id, updatedTypeUser);
-        return updatedTypeUserResponse != null ? ResponseEntity.ok(updatedTypeUserResponse) : ResponseEntity.notFound().build();
+        return updatedTypeUserResponse != null ? ResponseEntity.ok(updatedTypeUserResponse)
+                : ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/{id}")

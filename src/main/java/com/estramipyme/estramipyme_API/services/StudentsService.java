@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.estramipyme.estramipyme_API.models.Students;
 import com.estramipyme.estramipyme_API.Repositories.StudentRepository;;
 
-
 @Service
 public class StudentsService {
 
@@ -21,7 +20,7 @@ public class StudentsService {
     }
 
     // Obtener un estudiante por su ID
-    public Optional<Students> obtenerPorId(Integer id) {  
+    public Optional<Students> obtenerPorId(Integer id) {
         return studentRepository.findById(id);
     }
 
@@ -36,7 +35,7 @@ public class StudentsService {
     }
 
     // Eliminar un estudiante por su ID
-    public void eliminarStudents(Integer id) {  
+    public void eliminarStudents(Integer id) {
         studentRepository.deleteById(id);
     }
 }

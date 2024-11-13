@@ -16,36 +16,41 @@ public class TeacherController {
     @Autowired
     private TeacherService teacherService;
 
-    //consulta todos
+    // consulta todos
     @GetMapping
-    public List<Teacher> getAll(){
-        return  teacherService.getTeachers();
+    public List<Teacher> getAll() {
+        return teacherService.getTeachers();
     }
-    //consul Id
-    @GetMapping ("{id}")
+
+    // consul Id
+    @GetMapping("{id}")
     public Teacher getId(@PathVariable Long id) {
         return teacherService.getTeacherId(id);
     }
-    @GetMapping ("/{email}")
+
+    @GetMapping("/{email}")
     public ResponseEntity<List<Teacher>> getTeacherByEmail(@RequestParam String email) {
-        List<Teacher>  teachers = teacherService.findByEmail(email);
+        List<Teacher> teachers = teacherService.findByEmail(email);
         return ResponseEntity.ok(teachers);
     }
-    //crear teacher
+
+    // crear teacher
     @PostMapping
-    public ResponseEntity <Teacher> createTeacher (@RequestBody Teacher teacher){
+    public ResponseEntity<Teacher> createTeacher(@RequestBody Teacher teacher) {
         Teacher createdTeacher = teacherService.addTeacher(teacher);
         return ResponseEntity.ok(createdTeacher);
     }
-    //Actualizar
-    @PutMapping ("/{id}")
-    public Teacher updateTeacher (@RequestBody Teacher teacher, @PathVariable Long id){
+
+    // Actualizar
+    @PutMapping("/{id}")
+    public Teacher updateTeacher(@RequestBody Teacher teacher, @PathVariable Long id) {
         teacher.setIdTeacher(id);
         return teacherService.updateTeacher(teacher);
     }
-    //delete
+
+    // delete
     @DeleteMapping("/{id}")
-    public  void  deleteTeacher(@PathVariable Long id){
+    public void deleteTeacher(@PathVariable Long id) {
         teacherService.deleteTeacherId(id);
     }
 }

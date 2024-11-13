@@ -1,11 +1,13 @@
 package com.estramipyme.estramipyme_API.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "admins")
 public class Admin {
-      @Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -18,8 +20,8 @@ public class Admin {
     @Column(nullable = false, length = 255)
     private String password;
 
-    @ManyToOne
-    // @JoinColumn(name = "type_user_id", referencedColumnName = "id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "type_user_id", referencedColumnName = "id", nullable = false)
     private TypeUser typeUser;
 
     // Getters y setters
@@ -56,11 +58,10 @@ public class Admin {
     }
 
     public TypeUser getTypeUser() {
-         return typeUser;
+        return typeUser;
     }
 
-     public void setTypeUser(TypeUser typeUser) {
-         this.typeUser = typeUser;
-
-     }
+    public void setTypeUser(TypeUser typeUser) {
+        this.typeUser = typeUser;
+    }
 }

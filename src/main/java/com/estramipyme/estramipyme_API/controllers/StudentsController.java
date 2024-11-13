@@ -3,7 +3,6 @@ package com.estramipyme.estramipyme_API.controllers;
 import com.estramipyme.estramipyme_API.Repositories.StudentRepository;
 import com.estramipyme.estramipyme_API.models.Students;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.ResponseEntity;
@@ -46,17 +45,17 @@ public class StudentsController {
             Students updatedStudent = student.get();
             updatedStudent.setNombre(studentDetails.getNombre());
             updatedStudent.setApellido(studentDetails.getApellido());
-    
+
             // Gestionar el Optional de email
             studentDetails.getEmail().ifPresent(updatedStudent::setEmail);
-    
+
             // Gestionar el Optional de telefono
             studentDetails.getTelefono().ifPresent(updatedStudent::setTelefono);
-    
+
             updatedStudent.setPassword(studentDetails.getPassword());
             updatedStudent.setTypeUserId(studentDetails.getTypeUserId());
             updatedStudent.setEmpresaId(studentDetails.getEmpresaId());
-    
+
             studentRepository.save(updatedStudent);
             return ResponseEntity.ok(updatedStudent);
         } else {

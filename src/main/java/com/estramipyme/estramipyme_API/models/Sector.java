@@ -1,4 +1,4 @@
- package com.estramipyme.estramipyme_API.models;
+package com.estramipyme.estramipyme_API.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,7 +8,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.Set;
-
 
 @Entity
 @Table(name = "sector")
@@ -22,7 +21,7 @@ public class Sector {
     private String descripcionSector;
 
     @OneToMany(mappedBy = "sector")
-     private Set<Empresas> empresas;
+    private Set<Empresas> empresas;
 
     // Getters y Setters
 
@@ -49,4 +48,4 @@ public class Sector {
     public void setEmpresas(Set<Empresas> empresas) {
         this.empresas = empresas;
     }
-} 
+}

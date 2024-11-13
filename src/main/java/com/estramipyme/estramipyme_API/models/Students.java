@@ -31,10 +31,12 @@ public class Students {
     private List<String> cursos;
 
     // Constructor vacío
-    public Students() {}
+    public Students() {
+    }
 
     // Constructor con todos los campos
-    public Students(String nombre, String apellido, String email, String password, String telefono, Long type_user_id, Long empresa_id, List<String> cursos) {
+    public Students(String nombre, String apellido, String email, String password, String telefono, Long type_user_id,
+            Long empresa_id, List<String> cursos) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;

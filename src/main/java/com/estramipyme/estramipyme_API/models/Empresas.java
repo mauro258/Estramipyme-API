@@ -30,10 +30,10 @@ public class Empresas {
     private Test test;
 
     @ManyToOne
-   @JoinColumn(name = "sector_id")
+    @JoinColumn(name = "sector_id")
     private Sector sector;
 
-    //constructor si argumentos
+    // constructor si argumentos
 
     // Getters y Setters
 
@@ -73,9 +73,7 @@ public class Empresas {
         return sector;
     }
 
-   public void setSector(Sector sector) {
-   this.sector = sector;
-   }
+    public void setSector(Sector sector) {
+        this.sector = sector;
+    }
 }
-
-    

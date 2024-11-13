@@ -2,7 +2,6 @@ package com.estramipyme.estramipyme_API.services;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,4 +38,4 @@ public class SectorService {
     public void deleteSector(Long id) {
         sectorRepository.deleteById(id);
     }
-} 
+}
