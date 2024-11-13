@@ -1,11 +1,6 @@
 package com.estramipyme.estramipyme_API.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "admins")
@@ -23,9 +18,9 @@ public class Admin {
     @Column(nullable = false, length = 255)
     private String password;
 
-    // @ManyToOne
+    @ManyToOne
     // @JoinColumn(name = "type_user_id", referencedColumnName = "id", nullable = false)
-    // private TypeUser typeUser;
+    private TypeUser typeUser;
 
     // Getters y setters
     public Long getId() {
@@ -60,11 +55,12 @@ public class Admin {
         this.password = password;
     }
 
-    // public TypeUser getTypeUser() {
-    //     return typeUser;
-    // }
+    public TypeUser getTypeUser() {
+         return typeUser;
+    }
 
-    // public void setTypeUser(TypeUser typeUser) {
-    //     this.typeUser = typeUser;
-    // }
+     public void setTypeUser(TypeUser typeUser) {
+         this.typeUser = typeUser;
+
+     }
 }

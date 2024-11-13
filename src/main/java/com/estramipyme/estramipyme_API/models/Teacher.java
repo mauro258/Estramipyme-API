@@ -1,14 +1,17 @@
 package com.estramipyme.estramipyme_API.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name="teachers")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 
 public class Teacher {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Long idTeacher;
@@ -17,14 +20,14 @@ public class Teacher {
     private String email;
     private  String telephone;
     private String password;
-    /*
-    @ManyToOne(optional = false)
-    @joinColumn(name="company_id")
-    private Company company;
 
     @ManyToOne(optional = false)
-    @joinColumn(name="type_user")
-    private Type_User;
+    @JoinColumn(name = "empresa_id")
+    private Empresas empresa;
 
-     */
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "type_user_id")
+    private TypeUser type_user;
+
+
 }
