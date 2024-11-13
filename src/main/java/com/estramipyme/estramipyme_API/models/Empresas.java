@@ -8,11 +8,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "empresas")
 @NoArgsConstructor
+@AllArgsConstructor
 public class Empresas {
 
     @Id
@@ -61,11 +63,11 @@ public class Empresas {
         this.sizeCompany = sizeCompany;
     }
 
-    public Test getTestId() {
+    public Test getTest() {
         return test;
     }
 
-    public void setTestId(Test testId) {
+    public void setTest(Test testId) {
         this.test = testId;
     }
 

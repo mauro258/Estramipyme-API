@@ -19,7 +19,7 @@ public class TeacherService {
     @Autowired
     private EmpresasRepository empresasRepository;
     @Autowired
-    TypeUserRepository typeUserRepository;
+    private TypeUserRepository typeUserRepository;
 
     //consulta varios
     public List<Teacher> getTeachers(){

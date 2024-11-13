@@ -3,6 +3,7 @@ package com.estramipyme.estramipyme_API.controllers;
 import com.estramipyme.estramipyme_API.models.Empresas;
 import com.estramipyme.estramipyme_API.services.EmpresasService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,8 +26,9 @@ public class EmpresasController {
     }
 
     @PostMapping
-    public Empresas createEmpresa(@RequestBody Empresas empresa) {
-        return empresasService.saveEmpresa(empresa);
+    public ResponseEntity <Empresas> createEmpresa(@RequestBody Empresas empresa) {
+        Empresas creadoEmpresa = empresasService.saveEmpresa(empresa);
+        return ResponseEntity.ok(creadoEmpresa);
     }
 
     @PutMapping("/{id}")
