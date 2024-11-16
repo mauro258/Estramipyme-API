@@ -1,17 +1,10 @@
 package com.estramipyme.estramipyme_API.models;
-
-import java.util.List;
-import java.util.Optional;
-
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "students")
+@NoArgsConstructor
 public class Students {
 
     @Id
@@ -23,28 +16,25 @@ public class Students {
     private String email;
     private String password;
     private String telefono;
-    private Long type_user_id;
-    private Long empresa_id;
 
-    // Ejemplo de un atributo relacionado como lista
-    @ElementCollection
-    private List<String> cursos;
+    @ManyToOne
+    @JoinColumn(name = "type_user", nullable = false)
+    private TypeUser typeUser;
 
-    // Constructor vacío
-    public Students() {
-    }
+    @ManyToOne
+    @JoinColumn(name = "empresa", nullable = false)
+    private Empresas empresa;
+
 
     // Constructor con todos los campos
-    public Students(String nombre, String apellido, String email, String password, String telefono, Long type_user_id,
-            Long empresa_id, List<String> cursos) {
+    public Students(String nombre, String apellido, String email, String password, String telefono, TypeUser typeUser, Empresas empresa) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.password = password;
         this.telefono = telefono;
-        this.type_user_id = type_user_id;
-        this.empresa_id = empresa_id;
-        this.cursos = cursos;
+        this.typeUser = typeUser;
+        this.empresa = empresa;
     }
 
     // Métodos getters y setters
@@ -73,8 +63,8 @@ public class Students {
         this.apellido = apellido;
     }
 
-    public Optional<String> getEmail() {
-        return Optional.ofNullable(email);
+    public String getEmail() {
+        return email;
     }
 
     public void setEmail(String email) {
@@ -89,35 +79,27 @@ public class Students {
         this.password = password;
     }
 
-    public Optional<String> getTelefono() {
-        return Optional.ofNullable(telefono);
+    public String getTelefono() {
+        return telefono;
     }
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
-    public Long getTypeUserId() {
-        return type_user_id;
+    public TypeUser getTypeUser() {
+        return typeUser;
     }
 
-    public void setTypeUserId(Long type_user_id) {
-        this.type_user_id = type_user_id;
+    public void setTypeUser(TypeUser typeUser) {
+        this.typeUser = typeUser;
     }
 
-    public Long getEmpresaId() {
-        return empresa_id;
+    public Empresas getEmpresa() {
+        return empresa;
     }
 
-    public void setEmpresaId(Long empresa_id) {
-        this.empresa_id = empresa_id;
-    }
-
-    public List<String> getCursos() {
-        return cursos;
-    }
-
-    public void setCursos(List<String> cursos) {
-        this.cursos = cursos;
+    public void setEmpresa(Empresas empresa) {
+        this.empresa = empresa;
     }
 }

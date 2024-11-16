@@ -19,7 +19,7 @@ public class TeacherService {
     @Autowired
     private EmpresasRepository empresasRepository;
     @Autowired
-    TypeUserRepository typeUserRepository;
+    private TypeUserRepository typeUserRepository;
 
     // consulta varios
     public List<Teacher> getTeachers() {
@@ -38,7 +38,13 @@ public class TeacherService {
     // crea profesores
     public Teacher addTeacher(Teacher teacher) {
         Empresas empresa = empresasRepository.findById(teacher.getEmpresa().getId()).orElse(null);
+        if (empresa == null) {
+            throw  new RuntimeException("La empresa no es valida");
+        }
         TypeUser typeUser = typeUserRepository.findById(teacher.getType_user().getId()).orElse(null);
+        if (typeUser == null) {
+            throw  new RuntimeException("TypeUser no es valido");
+        }
 
         teacher.setEmpresa(empresa);
         teacher.setType_user(typeUser);
@@ -47,7 +53,19 @@ public class TeacherService {
     }
 
     // Edita profesores
-    public Teacher updateTeacher(Teacher teacher) {
+    public Teacher updateTeacher(Teacher teacher){
+        Empresas empresa = empresasRepository.findById(teacher.getEmpresa().getId()).orElse(null);
+        if  (empresa ==null) {
+            throw  new RuntimeException("La empresa no es valida");
+        }
+        TypeUser typeUser = typeUserRepository.findById(teacher.getType_user().getId()).orElse(null);
+        if  (empresa ==null) {
+            throw  new RuntimeException("La empresa no es valida");
+        }
+
+        teacher.setEmpresa(empresa);
+        teacher.setType_user(typeUser);
+
         return teacherRepo.save(teacher);
     }
 
