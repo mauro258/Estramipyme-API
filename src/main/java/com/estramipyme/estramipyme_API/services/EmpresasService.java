@@ -23,21 +23,33 @@ public class EmpresasService {
     }
 
     public Empresas saveEmpresa(Empresas empresa) {
+        // Validamos si el Test asociado es nulo o su ID es nulo
+        if (empresa.getTestId() == null || empresa.getTestId().getIdTest() == null) {
+            throw new RuntimeException("El test no es válido.");
+        }
+        // Validamos si el Sector asociado es nulo o su ID es nulo
         if (empresa.getSector() == null || empresa.getSector().getId() == null) {
             throw new RuntimeException("El sector no es válido.");
         }
+        // Si las validaciones son correctas, guardamos la empresa
         return empresasRepository.save(empresa);
     }
-
+    
     public Empresas updateEmpresa(Long id, Empresas empresaDetails) {
         Empresas empresa = empresasRepository.findById(id).orElse(null);
         if (empresa != null) {
+            // Actualizamos solo si el Test no es nulo
+            if (empresaDetails.getTestId() != null) {
+                empresa.setTestId(empresaDetails.getTestId());
+            }
+            // Actualizamos solo si el Sector no es nulo
             if (empresaDetails.getSector() != null) {
                 empresa.setSector(empresaDetails.getSector());
             }
+            // Actualizamos el nombre de la empresa y el tamaño de la compañía
             empresa.setNombreEmpresa(empresaDetails.getNombreEmpresa());
             empresa.setSizeCompany(empresaDetails.getSizeCompany());
-            empresa.setTestId(empresaDetails.getTestId());
+            // Guardamos los cambios
             return empresasRepository.save(empresa);
         }
         return null;
